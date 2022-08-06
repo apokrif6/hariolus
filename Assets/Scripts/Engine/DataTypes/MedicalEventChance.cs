@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Engine
 {
-    public class MedicalEventChance
+    public sealed class MedicalEventChance
     {
         public string PreviousEventType;
         public string NextEventType;
