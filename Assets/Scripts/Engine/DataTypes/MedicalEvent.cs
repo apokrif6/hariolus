@@ -2,13 +2,13 @@
 
 namespace Engine
 {
-    public class MedicalEvents: MedicalEventPrototype
+    public class MedicalEvent: MedicalEventPrototype
     {
         public BodyParts Localization;
         public float Intensity;
         public float Exacerbation;
 
-        public MedicalEvents(MedicalEventPrototype prototype)
+        public MedicalEvent(MedicalEventPrototype prototype)
         {
             Name = prototype.Name;
             foreach (ParameterImpact damage in prototype.TotalDamage)
