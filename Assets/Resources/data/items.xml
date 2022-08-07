@@ -1,1 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<items>
+    <item name="PineOilMixture">
+        <substance name="PineOil" count="5"/>
+    </item>
+    <item name="YoungPineShoots">
+        <substance name="PineOil" count="1"/>
+    </item>
+    <item name="Turpentine">
+        <substance name="Turpentine" count="10"/>
+    </item>
+</items>

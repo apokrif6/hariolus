@@ -1,1 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<events>
+    <event name="BacterialInfection" revealed="false">
+        <damage param="Health" value="0.1"/>
+    </event>
+    <event name="Inflammation">
+        <damage param="Health" value="0.1"/>
+        <damage param="Power" value="0.1"/>
+    </event>
+</events>
