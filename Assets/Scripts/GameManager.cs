@@ -1,12 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Engine
 {
     public class GameManager: MonoBehaviour
     {
         public static GameManager GameManagerInstance { get; private set; }
-        private bool _FirstAwake;
+        public GameObject playerController;
+        
+        private bool _firstAwake;
         private void Awake()
         {
             if (GameManagerInstance != null && GameManagerInstance != this)
@@ -14,15 +17,15 @@ namespace Engine
 
             GameManagerInstance = this;
 
-            _FirstAwake = true;
+            _firstAwake = true;
         }
 
         private void Update()
         {
-            if (_FirstAwake)
+            if (_firstAwake)
             {
                 HerbalismManager.Instance.LoadData();
-                _FirstAwake = false;
+                _firstAwake = false;
             }
         }
     }
