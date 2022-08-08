@@ -19,7 +19,7 @@ namespace Engine
         {
             if (xElement.Attribute("name") == null)
                 Debug.LogError("None name attribute in " + xElement.ToString());
-            else Name = xElement.Attribute("nazwa").Value;
+            else Name = xElement.Attribute("name").Value;
             
             Revealed = xElement.Attribute("revealed") == null;
             
