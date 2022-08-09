@@ -64,6 +64,7 @@
      <Compile Include="Assets\UnityAssets\CrossPlatformInput\Scripts\VirtualInput.cs" />
      <Compile Include="Assets\UnityAssets\Environment\Water\Water\Scripts\Displace.cs" />
      <Compile Include="Assets\UnityAssets\Utility\SmoothFollow.cs" />
+     <Compile Include="Assets\Scripts\PatientComponent.cs" />
      <Compile Include="Assets\Scripts\Engine\DataTypes\Substance.cs" />
      <Compile Include="Assets\Scripts\Engine\HerbalismManager.cs" />
      <Compile Include="Assets\UnityAssets\Environment\Water\Water\Scripts\PlanarReflection.cs" />
@@ -120,7 +121,6 @@
      <Compile Include="Assets\Scripts\Extras\Functions.cs" />
      <Compile Include="Assets\UnityAssets\Utility\FPSCounter.cs" />
      <Compile Include="Assets\UnityAssets\Utility\SimpleActivatorMenu.cs" />
-     <Compile Include="Assets\Scripts\PatientComponent.cs" />
      <None Include="Assets\UnityAssets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\UnityAssets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
      <None Include="Assets\Resources\data\events.xml" />
