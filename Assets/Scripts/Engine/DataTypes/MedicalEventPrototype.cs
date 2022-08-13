@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Xml.Linq;
 using UnityEngine;
 
@@ -8,7 +9,9 @@ namespace Engine
     {
         public string Name;
         public List<ParameterImpact> TotalDamage;
-        public bool Revealed; 
+        public bool Revealed;
+        public float Mortality;
+        public bool Disposable;
 
         public MedicalEventPrototype()
         {
@@ -22,7 +25,13 @@ namespace Engine
             else Name = xElement.Attribute("name").Value;
             
             Revealed = xElement.Attribute("revealed") == null;
-            
+
+            Disposable = xElement.Attribute("disposable") != null;
+
+            Mortality = xElement.Attribute("mortality") != null
+                ? float.Parse(xElement.Attribute("mortality").Value, CultureInfo.InvariantCulture)
+                : 0;
+
             foreach (XElement element in xElement.Elements())
             {
                 if (element.Name != "damage") continue;

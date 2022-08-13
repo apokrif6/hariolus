@@ -29,7 +29,7 @@ namespace Engine
             Normalize();
         }
 
-        private void Normalize()
+        public void Normalize()
         {
             if (Intensity < 0)
                 Intensity = 0;
