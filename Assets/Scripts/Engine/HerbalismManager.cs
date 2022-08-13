@@ -112,27 +112,52 @@ namespace Engine
 
             if (drawnEvent != null)
             {
-                MedicalEventPrototype newPrototype = null;
-                foreach (MedicalEventPrototype prototype in _medicalEventPrototypes)
-                {
-                    if (prototype.Name == drawnEvent.NextEventType)
-                        newPrototype = prototype;
-                }
-
-                if (newPrototype == null)
-                {
-                    Debug.LogError("Can't find medical event pattern " + drawnEvent.NextEventType);
-                    return null;
-                }
-
-                MedicalEvent medicalEvent = new MedicalEvent(newPrototype);
-                medicalEvent.Localization = drawnEvent.NextLocalization;
-                medicalEvent.Intensity = Random.Range(0.001f, 1f);
-                medicalEvent.Exacerbation = Random.Range(0f, 2f) - 1f;
-                return medicalEvent;
+                float newIntensity = Random.Range(0.001f, 1f);
+                float newExacerbation = Random.Range(0f, 2f) - 1f;
+                return CreateMedicalEventBasedOnChance(drawnEvent, drawnEvent.NextLocalization, newIntensity, newExacerbation);
             }
             
             return null;
+        }
+        
+        public List<MedicalEvent> ProcessMedicalEventStatus(MedicalEvent medicalEvent)
+        {
+            List<MedicalEvent> newEvents = new List<MedicalEvent>();
+            foreach (MedicalEventChance chance in _dependentDiseasesPrototypes)
+            {
+                if ((chance.PreviousLocalization & medicalEvent.Localization) != 0
+                    && chance.PreviousEventType == medicalEvent.Name && Random.Range(0, 1f) < chance.Chance)
+                {
+                    MedicalEvent newEvent = CreateMedicalEventBasedOnChance(chance,
+                        chance.NextLocalization == BodyParts.Any ? medicalEvent.Localization : chance.NextLocalization,
+                        medicalEvent.Intensity, medicalEvent.Exacerbation);
+                }
+            }
+            
+            medicalEvent.ProcessHourly();
+            return newEvents;
+        }
+        
+        private MedicalEvent CreateMedicalEventBasedOnChance (MedicalEventChance eventChance, BodyParts localization, float intensity, float exacerbation)
+        {
+            MedicalEventPrototype newPrototype = null;
+            foreach (MedicalEventPrototype prototype in _medicalEventPrototypes)
+            {
+                if (prototype.Name == eventChance.NextEventType)
+                    newPrototype = prototype;
+            }
+
+            if (newPrototype == null)
+            {
+                Debug.LogError("Can't find medical event pattern " + eventChance.NextEventType);
+                return null;
+            }
+
+            MedicalEvent medicalEvent = new MedicalEvent(newPrototype);
+            medicalEvent.Localization = localization;
+            medicalEvent.Intensity = intensity;
+            medicalEvent.Exacerbation = exacerbation;
+            return medicalEvent;
         }
     }
 }
