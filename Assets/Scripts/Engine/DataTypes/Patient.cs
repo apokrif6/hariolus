@@ -10,6 +10,10 @@ namespace Engine
         
         public Patient() : base()
         {
+            Characteristics.Add("Health", 100);
+            Characteristics.Add("Strength", 100);
+            Characteristics.Add("Vitality", 100);
+            
             _currentEvents = new List<MedicalEvent>();
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Random = UnityEngine.Random;
 
 namespace Engine
 {
@@ -19,6 +20,28 @@ namespace Engine
                 Intensity = 1;
                 Exacerbation = 1;
             }
+        }
+
+        public void ProcessHourly()
+        {
+            Intensity += Exacerbation / 24;
+            Exacerbation += Random.Range(0, 01f) - 0.05f;
+            Normalize();
+        }
+
+        private void Normalize()
+        {
+            if (Intensity < 0)
+                Intensity = 0;
+
+            if (Intensity > 1)
+                Intensity = 1;
+
+            if (Exacerbation < -0.5)
+                Exacerbation = -0.5f;
+
+            if (Exacerbation > 0.5)
+                Exacerbation = 0.5f;
         }
     }
 }
