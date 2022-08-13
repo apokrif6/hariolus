@@ -5,7 +5,34 @@ namespace Engine
 {
     public class Patient: Character
     {
-        public int NumberCurrentEvents { get { return _currentEvents.Count;}}
+        public static int NextID = 0;
+
+        public bool IsAlive
+        {
+            get { return GetCharacteristic("Health") > 0; }
+        }
+        public bool IsHealthy
+        {
+            get { return _currentEvents.Count == 0;  }
+        }
+
+        public int NumberCurrentEvents
+        {
+            get { return _currentEvents.Count;}
+        }
+
+        public int IDPatient
+        {
+            get;
+            private set;
+        }
+
+        public string DeathCause
+        {
+            get;
+            private set;
+        }
+        
         private List<MedicalEvent> _currentEvents;
         
         public Patient() : base()
@@ -13,6 +40,9 @@ namespace Engine
             Characteristics.Add("Health", 100);
             Characteristics.Add("Strength", 100);
             Characteristics.Add("Vitality", 100);
+
+            IDPatient = ++NextID;
+            DeathCause = "";
             
             _currentEvents = new List<MedicalEvent>();
         }
