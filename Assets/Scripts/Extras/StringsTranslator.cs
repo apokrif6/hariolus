@@ -30,6 +30,16 @@ namespace Extras
             return null;
         }
 
+        public static bool ContainsString(string name)
+        {
+            if (_data == null)
+            {
+                Load();
+            }
+
+            return _data.ContainsKey(name);
+        }
+        
         private static void Load()
         {
             string SystemLanguageCode = ConvertLanguageCode(Application.systemLanguage);

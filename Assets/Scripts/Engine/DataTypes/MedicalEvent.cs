@@ -1,4 +1,5 @@
 ﻿using System;
+using Extras;
 using Random = UnityEngine.Random;
 
 namespace Engine
@@ -42,6 +43,22 @@ namespace Engine
 
             if (Exacerbation > 0.5)
                 Exacerbation = 0.5f;
+        }
+
+        public string GetPrettyName()
+        {
+            if (StringsTranslator.ContainsString(Name + Localization))
+            {
+                return StringsTranslator.EnterString(Name + Localization);
+            }
+
+            if (StringsTranslator.ContainsString(Name) && StringsTranslator.ContainsString(Localization + "Extra"))
+            {
+                return StringsTranslator.EnterString(Name) + " " +
+                       StringsTranslator.EnterString(Localization + "Extra");
+            }
+
+            return "<" + Name + " " + Localization + ">";
         }
     }
 }
