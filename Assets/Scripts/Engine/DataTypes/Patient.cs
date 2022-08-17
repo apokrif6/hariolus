@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Text;
+using Extras;
 using UnityEngine;
 
 namespace Engine
@@ -112,6 +114,32 @@ namespace Engine
             {
                 _currentEvents.Remove(medicalEvent);
             }
+        }
+
+        public string DebugEvents()
+        {
+            StringBuilder log = new StringBuilder();
+            log.Append(string.Format("{0} {1}: {2}, {3}: {4}, {5}: {6} \n\r",
+                StringsTranslator.EnterString("Patient") + IDPatient,
+                StringsTranslator.EnterString("HealthCut"),
+                CreateText(GetCharacteristic("Health")),
+                StringsTranslator.EnterString("StrengthCut"),
+                CreateText(GetCharacteristic("Strength")),
+                StringsTranslator.EnterString("VitalityCut"),
+                CreateText(GetCharacteristic("Vitality"))
+                ));
+
+            foreach (MedicalEvent medicalEvent in _currentEvents)
+            {
+                log.Append(" * " + medicalEvent.GetPrettyName() + " " + CreateText(medicalEvent.Intensity) + "(" + CreateText(medicalEvent.Exacerbation) + ")\n\r");
+            }
+
+            return log.ToString();
+        }
+
+        private string CreateText(float number)
+        {
+            return number.ToString("F2");
         }
     }
 }

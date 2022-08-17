@@ -81,6 +81,7 @@
      <Compile Include="Assets\UnityAssets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
      <Compile Include="Assets\UnityAssets\CrossPlatformInput\Scripts\TiltInput.cs" />
      <Compile Include="Assets\UnityAssets\Environment\Water\Water\Scripts\SpecularLighting.cs" />
+     <Compile Include="Assets\Scripts\Extras\StringsTranslator.cs" />
      <Compile Include="Assets\UnityAssets\Utility\WaypointProgressTracker.cs" />
      <Compile Include="Assets\UnityAssets\Utility\DragRigidbody.cs" />
      <Compile Include="Assets\UnityAssets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
@@ -121,7 +122,6 @@
      <Compile Include="Assets\Scripts\Extras\Functions.cs" />
      <Compile Include="Assets\UnityAssets\Utility\FPSCounter.cs" />
      <Compile Include="Assets\UnityAssets\Utility\SimpleActivatorMenu.cs" />
-     <Compile Include="Assets\Scripts\Extras\StringsTranslator.cs" />
      <None Include="Assets\Resources\Localization\strings-pl.xml" />
      <None Include="Assets\Resources\Localization\strings-en.xml" />
      <None Include="Assets\UnityAssets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
