@@ -61,6 +61,7 @@ namespace Engine
                     foreach (XElement element in chancesNodesList)
                     {
                         MedicalEventChance newEventChance = new MedicalEventChance();
+                        newEventChance.LoadData(element);
                         if (newEventChance.PreviousEventType == null)
                             _primaryDiseasesPrototypes.Add(newEventChance);
                         else

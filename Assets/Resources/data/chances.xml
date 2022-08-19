@@ -1,0 +1,4 @@
+﻿<chances>
+    <chance previous="" next="BacterialInfection" chance="0.02" previousLocalization="Any" nextLocalization="Throat" />
+    <chance previous="" next="BacterialInfection" chance="0.02" previousLocalization="Any" nextLocalization="Larynx" />
+</chances>

@@ -131,6 +131,7 @@
      <None Include="Assets\Resources\Localization\strings-ru.xml" />
      <None Include="Assets\UnityAssets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\UnityAssets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+     <None Include="Assets\Resources\data\chances.xml" />
      <None Include="Assets\UnityAssets\Characters\RollerBall\RollerBallGuidelines.txt" />
      <None Include="Assets\UnityAssets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
      <None Include="Assets\UnityAssets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
