@@ -1,12 +1,29 @@
 ﻿using System;
+using Extras;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Engine
 {
     public class PatientComponent: MonoBehaviour
     {
-        public const int MAX_DISEASES = 3;
+        private const float DistanceToShow = 5;
+        private const float CheckDistanceFrequency = 0.5f;
+        private float _secondCounter;
+        
         public Patient PrivatePatient { get; private set; }
+        private Text _patientInfo;
+
+        private void Awake()
+        {
+            Canvas patientUI = GetComponentInChildren<Canvas>();
+            if (patientUI != null)
+            {
+                _patientInfo = patientUI.GetComponentInChildren<Text>();
+            }
+
+            _secondCounter = 0;
+        }
 
         private void Start()
         {
@@ -24,22 +41,69 @@ namespace Engine
             Quaternion lookDirection = Quaternion.LookRotation(lookTarget - transform.position, transform.up);
             
             transform.rotation = lookDirection;
+
+            _secondCounter -= Time.deltaTime;
+
+            if (_secondCounter < 0)
+            {
+                _secondCounter = CheckDistanceFrequency;
+
+                if ((GameManager.GameManagerInstance.playerController.transform.position - transform.position)
+                    .magnitude < DistanceToShow)
+                {
+                    _patientInfo.transform.parent.gameObject.SetActive(true);
+                }
+                else
+                {
+                    _patientInfo.transform.parent.gameObject.SetActive(false);
+                }
+            }
         }
 
         private void HourLapse(int hour)
         {
-            if (PrivatePatient.NumberCurrentEvents < MAX_DISEASES)
+            if (PrivatePatient.IsAlive)
             {
-                MedicalEvent newMedicalEvent = HerbalismManager.Instance.CreatePrimaryMedicalEvent();
+                PrivatePatient.HourlyEventHandling();
 
-                if (newMedicalEvent != null)
+                if (_patientInfo != null)
                 {
-                    PrivatePatient.AddNewEvent(newMedicalEvent);
+                    _patientInfo.text = PrivatePatient.DebugEvents();
+                }
+
+                if (!PrivatePatient.IsAlive)
+                {
+                    if (PrivatePatient.DeathCause != "")
+                    {
+                        Debug.Log(string.Format("{0} {1} {2} {3}",
+                            StringsTranslator.EnterString("Patient"),
+                            PrivatePatient.IDPatient,
+                            StringsTranslator.EnterString("DiedViolently"),
+                            PrivatePatient.DeathCause));
+                    }
+                    else
+                    {
+                        Debug.Log(string.Format("{0} {1} {2}",
+                            StringsTranslator.EnterString("Patient"),
+                            PrivatePatient.IDPatient,
+                            StringsTranslator.EnterString("Died")));
+                    }
+                }
+
+                if (PrivatePatient.IsHealthy)
+                {
+                    Debug.Log(string.Format("{0} {1} {2}",
+                        StringsTranslator.EnterString("Patient"),
+                        PrivatePatient.IDPatient,
+                        StringsTranslator.EnterString("Recovered")));
+                }
+
+                if (PrivatePatient.IsHealthy || !PrivatePatient.IsAlive)
+                {
+                    DayNightSystem.Instance.ChangeHour -= HourLapse;
+                    Destroy(gameObject);
                 }
             }
-            
-            if (PrivatePatient.NumberCurrentEvents > 0)
-                gameObject.SetActive(true);
         }
         
         private void MinuteLapse(int minute)
