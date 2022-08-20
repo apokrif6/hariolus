@@ -42,10 +42,10 @@ namespace Extras
         
         private static void Load()
         {
-            string SystemLanguageCode = ConvertLanguageCode(Application.systemLanguage);
+            string systemLanguageCode = ConvertLanguageCode(Application.systemLanguage);
 
             _data = new Dictionary<string, string>();
-            LoadResources(Path + Filename + SystemLanguageCode);
+            LoadResources(Path + "/"+ Filename + "-" + systemLanguageCode);
         }
 
         private static string ConvertLanguageCode(SystemLanguage language)

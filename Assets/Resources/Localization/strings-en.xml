@@ -4,4 +4,12 @@
     <string name="BacterialInfection">Bacterial infection</string>
 
     <string name="HeadExtra">of the head</string>
+    
+    <string name="HealthCut">Health</string>
+
+    <string name="StrengthCut">Strenght</string>
+
+    <string name="VitalityCut">Vitality</string>
+
+    <string name="Recovered">Recovered</string>
 </strings>

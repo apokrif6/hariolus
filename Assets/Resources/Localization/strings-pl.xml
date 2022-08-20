@@ -4,4 +4,12 @@
     <string name="BacterialInfection">Infekcja bakteryjna</string>
 
     <string name="HeadExtra">głowy</string>
+
+    <string name="HealthCut">Zdrowie</string>
+
+    <string name="StrengthCut">Siła</string>
+
+    <string name="VitalityCut">Witalność</string>
+
+    <string name="Recovered">Wyzdrowiał</string>
 </strings>
