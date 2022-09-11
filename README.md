@@ -1,2 +1,3 @@
 # hariolus
-one day, it's will be my game
+simple c# game
+(don't working ;D)
